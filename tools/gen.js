@@ -1,5 +1,53 @@
-<title>ルイ・ヴィトン ルイ・ヴィトン モノグラム</title>
-<meta name="description" content="ルイ・ヴィトン モノグラム 本物の見分け方 — 保存用カルーセル + ショート動画プレビュー + キャプション（@meihin.note）">
+const fs = require("fs");
+const path = require("path");
+const { HANDLE, PILLAR, ROMAN, ITEMS } = require("./data.js");
+
+const PROJECT = "/home/user/my-project";
+const CAR_DIR = path.join(PROJECT, "content/carousels");
+const REEL_DIR = path.join(__dirname, "reels");
+fs.mkdirSync(CAR_DIR, { recursive: true });
+fs.mkdirSync(REEL_DIR, { recursive: true });
+
+const markName = HANDLE.replace("@", "");
+
+function reelFrames(it) {
+  const p = PILLAR[it.pillar];
+  const steps = it.points.filter(x => x.r).slice(0, 3);
+  const stepFrames = steps.map((s, i) =>
+    `<div class="frame"><div class="step">0${i + 1}</div><div class="big">${s.r}</div></div>`).join("\n");
+  return { p, stepFrames };
+}
+
+function caption(it) {
+  const p = PILLAR[it.pillar];
+  const marks = ["①", "②", "③", "④", "⑤"];
+  const lines = it.points.map((pt, i) => `${marks[i]} ${pt.c}`).join("\n");
+  return `【保存版】${it.capTitle}
+
+${p.intro}
+
+${lines}
+
+${p.close}
+▸ 正規品のお取り寄せはプロフィール ${HANDLE} から
+
+※本投稿は一般的な知識の紹介です。`;
+}
+
+/* ---------------- CAROUSEL (Google Fonts, 3-part) ---------------- */
+function carousel(it) {
+  const p = PILLAR[it.pillar];
+  const slides = it.points.map((pt, i) => `      <section class="slide">
+        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+        <div class="eyebrow">Point 0${i + 1}</div><div class="rule"></div><div class="num">${ROMAN[i]}</div>
+        <div class="stitle">${pt.t}</div>
+        <div class="sbody">${pt.b}</div>
+        <div class="spacer"></div><div class="mark"><span class="dot"></span>${markName} ・ ${p.badge}</div>
+      </section>`).join("\n");
+  const { stepFrames } = reelFrames(it);
+  const cap = caption(it);
+  return `<title>${it.brand} ${it.sub.replace(/ 編$/, "")}</title>
+<meta name="description" content="${it.capTitle} — 保存用カルーセル + ショート動画プレビュー + キャプション（${HANDLE}）">
 <style>
 :root{--ink:#0B0B0D;--panel:#15151A;--panel-2:#1E1E25;--ivory:#F7F3EC;--body:#EAE3D6;--muted:#C4BCA9;--gold:#D2AC62;--gold-soft:#8A7442;--line:#33333C;
   --font-disp:"Shippori Mincho B1","Noto Serif JP",serif;--font-body:"Noto Sans JP","Noto Serif JP",system-ui,sans-serif;--font-lat:"Cormorant Garamond",Georgia,serif;color-scheme:dark;}
@@ -51,52 +99,18 @@ body{background:var(--ink);color:var(--ivory);font-family:var(--font-body);font-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&family=Shippori+Mincho+B1:wght@700;800&display=swap">
 <div class="wrap g">
-  <div class="mast"><div class="kick">Content №001 ・ AUTHENTICITY</div><h1>ルイ・ヴィトン モノグラム 本物の見分け方</h1><p>カルーセル(保存用) ＋ ショート動画(集客用) ＋ キャプション</p></div>
+  <div class="mast"><div class="kick">Content №${it.id} ・ ${p.badge}</div><h1>${it.capTitle}</h1><p>カルーセル(保存用) ＋ ショート動画(集客用) ＋ キャプション</p></div>
   <div class="block">
     <div class="blockhead"><span class="bar"></span><h2>CAROUSEL</h2><span class="bar"></span></div>
     <p class="blocksub">Instagram 保存用 ・ 1080×1350 ・ 全7枚</p>
     <div class="deck" id="deck">
       <section class="slide cover"><span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="badge">保存版 ・ AUTHENTICITY</div><h3>知らないと損する<br>本物の見分け方</h3><div class="sub">ルイ・ヴィトン モノグラム 編 ・ 5つのポイント</div></section>
-      <section class="slide">
-        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="eyebrow">Point 01</div><div class="rule"></div><div class="num">I</div>
-        <div class="stitle">モノグラムの<br>配置と対称</div>
-        <div class="sbody">LVと花柄の並びは規則的で上下も正位置。左右のバランスが整い、柄が歪んだり潰れたりしていないかを確認します。</div>
-        <div class="spacer"></div><div class="mark"><span class="dot"></span>meihin.note ・ AUTHENTICITY</div>
-      </section>
-      <section class="slide">
-        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="eyebrow">Point 02</div><div class="rule"></div><div class="num">II</div>
-        <div class="stitle">ヒートスタンプ<br>（刻印）</div>
-        <div class="sbody">「Louis Vuitton」「made in …」の刻印は細く均一で鮮明。文字の間隔が整い、にじみや潰れがないのが特徴です。</div>
-        <div class="spacer"></div><div class="mark"><span class="dot"></span>meihin.note ・ AUTHENTICITY</div>
-      </section>
-      <section class="slide">
-        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="eyebrow">Point 03</div><div class="rule"></div><div class="num">III</div>
-        <div class="stitle">ステッチの<br>色と間隔</div>
-        <div class="sbody">糸は落ち着いたマスタード色。縫い目は真っ直ぐで等間隔、ほつれや乱れがなく、角の始末まで整っています。</div>
-        <div class="spacer"></div><div class="mark"><span class="dot"></span>meihin.note ・ AUTHENTICITY</div>
-      </section>
-      <section class="slide">
-        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="eyebrow">Point 04</div><div class="rule"></div><div class="num">IV</div>
-        <div class="stitle">金具の<br>質感と刻印</div>
-        <div class="sbody">金具は程よい重みがあり、メッキは均一で上質な光沢。「Louis Vuitton」の刻印がかすれず鮮明に入ります。</div>
-        <div class="spacer"></div><div class="mark"><span class="dot"></span>meihin.note ・ AUTHENTICITY</div>
-      </section>
-      <section class="slide">
-        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
-        <div class="eyebrow">Point 05</div><div class="rule"></div><div class="num">V</div>
-        <div class="stitle">ヌメ革と<br>内側の刻印</div>
-        <div class="sbody">未加工のヌメ革は使うほど自然な飴色へ経年変化。内側の刻印や仕立てまで一貫して丁寧かを見ます。</div>
-        <div class="spacer"></div><div class="mark"><span class="dot"></span>meihin.note ・ AUTHENTICITY</div>
-      </section>
+        <div class="badge">保存版 ・ ${p.badge}</div><h3>${p.coverH}</h3><div class="sub">${it.sub} ・ ${p.unit}</div></section>
+${slides}
       <section class="slide cta"><span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
         <div class="eyebrow">Save it</div><div class="rule" style="margin-inline:auto"></div>
         <div class="stitle">買う前に、<br>もう一度チェック。</div><div class="sbody" style="color:var(--muted)">保存して、お買い物のお守りに。</div>
-        <div class="handle">@meihin.note</div><div class="save">Save &amp; Follow</div>
+        <div class="handle">${HANDLE}</div><div class="save">Save &amp; Follow</div>
         <div class="spacer"></div><div class="mark" style="justify-content:center">正規品はプロフィールのリンクから</div></section>
     </div>
     <div class="navrow"><button class="nav" id="prev" type="button" aria-label="前へ">‹</button><div class="dots" id="dots"></div><button class="nav" id="next" type="button" aria-label="次へ">›</button></div>
@@ -105,33 +119,17 @@ body{background:var(--ink);color:var(--ivory);font-family:var(--font-body);font-
     <div class="blockhead"><span class="bar"></span><h2>SHORT / REEL</h2><span class="bar"></span></div>
     <p class="blocksub">YouTube・TikTok・Reels 集客用 ・ 1080×1920 ・ 約10秒</p>
     <div class="reelrow"><div class="phone" id="phone"><div class="sky" id="sky"></div><div class="sweep"></div><div class="reel-frame"></div>
-      <div class="frame"><div class="big">知らないと<br>損する話。</div></div>
-      <div class="frame"><div class="tag">Authenticity</div><div class="big">ルイ・ヴィトン<br>本物の見分け方</div></div>
-<div class="frame"><div class="step">01</div><div class="big">モノグラムは<br>規則的か？</div></div>
-<div class="frame"><div class="step">02</div><div class="big">刻印は<br>鮮明か？</div></div>
-<div class="frame"><div class="step">03</div><div class="big">ステッチは<br>真っ直ぐか？</div></div>
-      <div class="frame"><div class="big">保存して、<br>買う前に。</div><div class="small">@meihin.note</div></div>
+      <div class="frame"><div class="big">${it.hook}</div></div>
+      <div class="frame"><div class="tag">${p.tag}</div><div class="big">${it.reelTitle}</div></div>
+${stepFrames}
+      <div class="frame"><div class="big">保存して、<br>買う前に。</div><div class="small">${HANDLE}</div></div>
       <div class="progress"><i id="bar"></i></div></div>
-      <div class="reel-cap"><p><b>ショート動画の構成案です。</b> この構成でMP4を書き出し済み（content/shorts/001.mp4）。トレンド音源や実写カットを足すとさらに効果的です。</p>
+      <div class="reel-cap"><p><b>ショート動画の構成案です。</b> この構成でMP4を書き出し済み（content/shorts/${it.id}.mp4）。トレンド音源や実写カットを足すとさらに効果的です。</p>
       <button class="replay" id="replay" type="button">↺ もう一度再生</button></div></div>
   </div>
-  <div class="caption"><h4>投稿キャプション</h4><div class="txt" id="cap">【保存版】ルイ・ヴィトン モノグラム 本物の見分け方
-
-高い買い物だからこそ、"目"を持っておきたい。
-正規品に共通する5つのポイントをまとめました。
-
-① モノグラムの配置が規則的で対称
-② ヒートスタンプ（刻印）が細く鮮明
-③ ステッチがマスタード色で等間隔
-④ 金具に程よい重みと鮮明な刻印
-⑤ ヌメ革の経年変化・内側の刻印まで一貫
-
-保存して、お買い物の前のチェックリストに。
-▸ 正規品のお取り寄せはプロフィール @meihin.note から
-
-※本投稿は一般的な知識の紹介です。</div>
-    <div class="tags">#ルイヴィトン #LouisVuitton #モノグラム #本物の見分け方 #ハイブランド #名品 #ブランド豆知識 #海外通販 #BUYMA #バイマ #パーソナルショッパー</div><button class="copy" id="copyBtn" type="button">キャプションをコピー</button></div>
-  <p class="note"><b>コンプライアンス ✓</b> 特定の販売者を名指ししない一般知識 ・ ブランド公式画像は不使用（オリジナルグラフィック） ・ 販売誘導はプロフィールのみ。 <b>@meihin.note</b> で統一。</p>
+  <div class="caption"><h4>投稿キャプション</h4><div class="txt" id="cap">${cap}</div>
+    <div class="tags">${it.tags}</div><button class="copy" id="copyBtn" type="button">キャプションをコピー</button></div>
+  <p class="note"><b>コンプライアンス ✓</b> 特定の販売者を名指ししない一般知識 ・ ブランド公式画像は不使用（オリジナルグラフィック） ・ 販売誘導はプロフィールのみ。 <b>${HANDLE}</b> で統一。</p>
 </div>
 <script>
 (function(){
@@ -150,6 +148,73 @@ body{background:var(--ink);color:var(--ivory);font-family:var(--font-body);font-
   function play(){start=0;step=0;show(0);requestAnimationFrame(tick);}
   document.getElementById('replay').addEventListener('click',play);show(0);setTimeout(play,400);
   var btn=document.getElementById('copyBtn'),cap=document.getElementById('cap');
-  btn.addEventListener('click',function(){var text=cap.innerText+"\n\n"+document.querySelector('.tags').innerText;function done(){var o=btn.textContent;btn.textContent='コピーしました ✓';setTimeout(function(){btn.textContent=o;},1600);}function sel(){var r=document.createRange();r.selectNodeContents(cap);var s=window.getSelection();s.removeAllRanges();s.addRange(r);done();}try{navigator.clipboard.writeText(text).then(done,sel);}catch(e){sel();}});
+  btn.addEventListener('click',function(){var text=cap.innerText+"\\n\\n"+document.querySelector('.tags').innerText;function done(){var o=btn.textContent;btn.textContent='コピーしました ✓';setTimeout(function(){btn.textContent=o;},1600);}function sel(){var r=document.createRange();r.selectNodeContents(cap);var s=window.getSelection();s.removeAllRanges();s.addRange(r);done();}try{navigator.clipboard.writeText(text).then(done,sel);}catch(e){sel();}});
 })();
-</script>
+</script>`;
+}
+
+/* ---------------- VERTICAL REEL for MP4 (local fonts, 1080x1920) ---------------- */
+function reel(it) {
+  const p = PILLAR[it.pillar];
+  const steps = it.points.filter(x => x.r).slice(0, 3);
+  const stepFrames = steps.map((s, i) =>
+    `<div class="fr"><div class="step">0${i + 1}</div><div class="big">${s.r}</div></div>`).join("\n");
+  return `<title>reel ${it.id}</title>
+<style>
+@font-face{font-family:'MinchoB';src:url('fonts/mincho-800.woff2') format('woff2');font-weight:800;font-display:block}
+@font-face{font-family:'MinchoB';src:url('fonts/mincho-700.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'NotoJP';src:url('fonts/noto-400.woff2') format('woff2');font-weight:400;font-display:block}
+@font-face{font-family:'NotoJP';src:url('fonts/noto-500.woff2') format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:'Cormo';src:url('fonts/cormorant-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:block}
+@font-face{font-family:'Cormo';src:url('fonts/cormorant-500i.woff2') format('woff2');font-weight:500;font-style:italic;font-display:block}
+:root{--ink:#0B0B0D;--ivory:#F7F3EC;--muted:#C4BCA9;--gold:#D2AC62;color-scheme:dark}
+*{margin:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+.stage{position:relative;width:1080px;height:1920px;background:radial-gradient(120% 78% at 50% 16%,#191921,#0A0A0D 76%);overflow:hidden}
+.gframe{position:absolute;inset:46px;border:2px solid rgba(210,172,98,.30);border-radius:26px;pointer-events:none}
+.gcorner{position:absolute;width:54px;height:54px;border:3px solid var(--gold);opacity:.85}
+.k1{top:70px;left:70px;border-right:0;border-bottom:0}.k2{top:70px;right:70px;border-left:0;border-bottom:0}
+.k3{bottom:70px;left:70px;border-right:0;border-top:0}.k4{bottom:70px;right:70px;border-left:0;border-top:0}
+.sky span{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.22;animation:drift linear infinite}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(-46px,40px)}}
+.sweep{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);top:0;opacity:.45;animation:sweep 4.2s ease-in-out infinite}
+@keyframes sweep{0%,100%{transform:translateY(430px)}50%{transform:translateY(1490px)}}
+.fr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 110px;opacity:0;transform:scale(.93);transition:opacity .4s ease,transform .5s ease}
+.fr.on{opacity:1;transform:scale(1)}
+.big{font-family:'MinchoB',serif;font-weight:800;color:var(--ivory);line-height:1.42;letter-spacing:.03em;font-size:104px;text-wrap:balance;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.tag{font-family:'Cormo',serif;font-style:italic;color:var(--gold);font-size:70px;margin-bottom:26px}
+.step{font-family:'Cormo',serif;font-weight:600;color:var(--gold);font-size:190px;line-height:1;margin-bottom:20px}
+.small{font-family:'Cormo',serif;color:var(--gold);font-size:60px;margin-top:34px;letter-spacing:.04em}
+.badge{position:absolute;top:150px;left:0;right:0;text-align:center;font-family:'NotoJP';font-weight:500;color:var(--muted);font-size:34px;letter-spacing:.5em;text-transform:uppercase}
+.progress{position:absolute;left:70px;right:70px;bottom:96px;height:5px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-soft,#8A7442),var(--gold))}
+</style>
+<div class="stage" id="stage">
+  <div class="sky" id="sky"></div><div class="sweep"></div>
+  <div class="gframe"></div><span class="gcorner k1"></span><span class="gcorner k2"></span><span class="gcorner k3"></span><span class="gcorner k4"></span>
+  <div class="badge">${markName} ・ ${p.badge}</div>
+  <div class="fr"><div class="big">${it.hook}</div></div>
+  <div class="fr"><div class="tag">${p.tag}</div><div class="big">${it.reelTitle}</div></div>
+${stepFrames}
+  <div class="fr"><div class="big">保存して、<br>買う前に。</div><div class="small">${HANDLE}</div></div>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+<script>
+(function(){
+  var sky=document.getElementById('sky');for(var k=0;k<34;k++){var s=document.createElement('span');s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.animationDuration=(7+Math.random()*9).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*9).toFixed(1)+'s';if(Math.random()>.7){s.style.width='4px';s.style.height='4px';s.style.opacity='.45';}sky.appendChild(s);}
+  var frames=document.querySelectorAll('.fr'),bar=document.getElementById('bar'),step=-1,start=0,HOLD=1650,total=frames.length*HOLD;
+  function show(i){frames.forEach(function(f,j){f.classList.toggle('on',j===i);});}
+  function tick(ts){if(!start)start=ts;var el=ts-start;bar.style.width=Math.min(100,el/total*100)+'%';var idx=Math.floor(el/HOLD);if(idx>=frames.length)idx=frames.length-1;if(idx!==step){step=idx;show(step);}if(el<total+300)requestAnimationFrame(tick);}
+  window.__done=false;window.__total=total;
+  window.startReel=function(){start=0;step=-1;requestAnimationFrame(function r(ts){if(!start)start=ts;var el=ts-start;bar.style.width=Math.min(100,el/total*100)+'%';var idx=Math.floor(el/HOLD);if(idx>=frames.length)idx=frames.length-1;if(idx!==step){step=idx;show(step);}if(el<total+250){requestAnimationFrame(r);}else{window.__done=true;}});};
+})();
+</script>`;
+}
+
+// write files
+ITEMS.forEach(it => {
+  fs.writeFileSync(path.join(CAR_DIR, `${it.id}_${it.slug}.html`), carousel(it));
+  fs.writeFileSync(path.join(REEL_DIR, `${it.id}.html`), reel(it));
+});
+console.log("generated", ITEMS.length, "carousels ->", CAR_DIR);
+console.log("generated", ITEMS.length, "reels ->", REEL_DIR);
