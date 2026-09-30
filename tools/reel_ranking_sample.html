@@ -1,0 +1,67 @@
+<title>reel ferragamo</title>
+<style>
+@font-face{font-family:'MinchoB';src:url('../fonts/mincho-800.woff2') format('woff2');font-weight:800;font-display:block}
+@font-face{font-family:'MinchoB';src:url('../fonts/mincho-700.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'NotoJP';src:url('../fonts/noto-400.woff2') format('woff2');font-weight:400;font-display:block}
+@font-face{font-family:'NotoJP';src:url('../fonts/noto-500.woff2') format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:'NotoJP';src:url('../fonts/noto-700.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'Cormo';src:url('../fonts/cormorant-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:block}
+@font-face{font-family:'Cormo';src:url('../fonts/cormorant-500i.woff2') format('woff2');font-weight:500;font-style:italic;font-display:block}
+:root{--ink:#0B0B0D;--ivory:#F7F3EC;--muted:#C4BCA9;--gold:#D2AC62;--goldsoft:#8A7442;color-scheme:dark}
+*{margin:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+.stage{position:relative;width:1080px;height:1920px;background:radial-gradient(120% 78% at 50% 14%,#1b1b22,#09090c 76%);overflow:hidden}
+.gcorner{position:absolute;width:50px;height:50px;border:3px solid var(--gold);opacity:.8}
+.k1{top:80px;left:80px;border-right:0;border-bottom:0}.k2{top:80px;right:80px;border-left:0;border-bottom:0}
+.k3{bottom:80px;left:80px;border-right:0;border-top:0}.k4{bottom:80px;right:80px;border-left:0;border-top:0}
+.flash{position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 45%,rgba(210,172,98,.16),transparent 70%);opacity:0}
+.flash.hit{animation:fl .5s ease-out}
+@keyframes fl{0%{opacity:.9}100%{opacity:0}}
+.badge{position:absolute;top:150px;left:0;right:0;text-align:center;font-family:'NotoJP';font-weight:500;color:var(--muted);font-size:33px;letter-spacing:.44em;text-transform:uppercase;z-index:6}
+.fr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:230px 90px;opacity:0;transition:opacity .22s ease}
+.fr.on{opacity:1}
+/* hook / cta */
+.eyebrow{font-family:'Cormo',serif;font-style:italic;color:var(--gold);font-size:62px;margin-bottom:24px}
+.big{font-family:'MinchoB',serif;font-weight:800;color:var(--ivory);font-size:104px;line-height:1.34;letter-spacing:.02em;text-wrap:balance}
+.sub{font-family:'NotoJP';color:var(--muted);font-size:48px;margin-top:34px}
+.small{font-family:'NotoJP';color:var(--muted);font-size:44px;margin-top:30px;line-height:1.6}
+.small b{color:var(--gold);font-weight:700}
+/* ranking */
+.no{font-family:'Cormo',serif;font-weight:600;color:var(--gold);font-size:88px;line-height:1;letter-spacing:.02em;display:flex;align-items:baseline;justify-content:center;gap:8px}
+.no small{font-family:'NotoJP',sans-serif;font-weight:700;font-size:56px;font-variant-numeric:lining-nums}
+.honmei{display:inline-block;margin-left:22px;font-family:'NotoJP';font-weight:700;font-size:34px;color:#0B0B0D;background:var(--gold);padding:6px 18px;border-radius:4px;letter-spacing:.1em;vertical-align:middle}
+.card{width:760px;height:760px;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 40px 90px -38px rgba(0,0,0,.95),0 0 0 1px rgba(210,172,98,.3);margin:26px 0}
+.card img{width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.fr.on .card{animation:punch .55s cubic-bezier(.2,.85,.2,1)}
+@keyframes punch{0%{transform:scale(1.14);opacity:.4}100%{transform:scale(1);opacity:1}}
+.cap{font-family:'MinchoB',serif;font-weight:800;color:var(--ivory);font-size:56px;line-height:1.35;letter-spacing:.02em}
+.price{font-family:'NotoJP',sans-serif;font-weight:700;color:var(--gold);font-size:60px;margin-top:16px;letter-spacing:.02em;font-variant-numeric:lining-nums}
+.progress{position:absolute;left:80px;right:80px;bottom:110px;height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden;z-index:6}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--goldsoft),var(--gold))}
+</style>
+<div class="stage" id="stage">
+  <span class="gcorner k1"></span><span class="gcorner k2"></span><span class="gcorner k3"></span><span class="gcorner k4"></span>
+  <div class="flash" id="flash"></div>
+  <div class="badge">meihin.note ・ FERRAGAMO</div>
+
+  <div class="fr"><div class="eyebrow">Gancini ・ 名品5選</div><div class="big">今選ぶなら、<br>どれ?</div><div class="sub">最後まで見て👀</div></div>
+
+  <div class="fr"><div class="no">No.<small>05</small></div><div class="card"><img src="assets/f5.jpg"></div><div class="cap">デイリーの品格・メンズ</div><div class="price">¥128,700</div></div>
+  <div class="fr"><div class="no">No.<small>04</small></div><div class="card"><img src="assets/f3.jpg"></div><div class="cap">艶めくレザー・きれいめ</div><div class="price">¥195,200</div></div>
+  <div class="fr"><div class="no">No.<small>03</small></div><div class="card"><img src="assets/f2.jpg"></div><div class="cap">今っぽい横長2WAY</div><div class="price">¥169,800</div></div>
+  <div class="fr"><div class="no">No.<small>02</small></div><div class="card"><img src="assets/f4.jpg"></div><div class="cap">小さめ可愛い・ハーフムーン</div><div class="price">¥95,238</div></div>
+  <div class="fr"><div class="no">No.<small>01</small><span class="honmei">本命</span></div><div class="card"><img src="assets/f1.jpg"></div><div class="cap">間違いない定番フラップ</div><div class="price">¥172,500</div></div>
+
+  <div class="fr"><div class="eyebrow">Save it</div><div class="big">気になる一点は、<br>こちら。</div>
+    <div class="small">保存＆プロフィールのリンク <b>@meihin.note</b><br>BUYMAで「<b>luxmall1004</b>」を検索</div></div>
+
+  <div class="progress"><i id="bar"></i></div>
+</div>
+<script>
+(function(){
+  var frames=document.querySelectorAll('.fr'),bar=document.getElementById('bar'),flash=document.getElementById('flash'),step=-1,HOLD=1600,total=frames.length*HOLD;
+  function show(i){frames.forEach(function(f,j){f.classList.toggle('on',j===i);});flash.classList.remove('hit');void flash.offsetWidth;flash.classList.add('hit');}
+  window.__done=false;window.__total=total;
+  window.startReel=function(){var start=0;requestAnimationFrame(function r(ts){if(!start)start=ts;var el=ts-start;bar.style.width=Math.min(100,el/total*100)+'%';var idx=Math.floor(el/HOLD);if(idx>=frames.length)idx=frames.length-1;if(idx!==step){step=idx;show(step);}if(el<total+250){requestAnimationFrame(r);}else{window.__done=true;}});};
+})();
+</script>
