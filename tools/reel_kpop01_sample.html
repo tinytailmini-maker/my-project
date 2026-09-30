@@ -1,0 +1,68 @@
+<title>reel kpop01</title>
+<style>
+@font-face{font-family:'MinchoB';src:url('../fonts/mincho-800.woff2') format('woff2');font-weight:800;font-display:block}
+@font-face{font-family:'MinchoB';src:url('../fonts/mincho-700.woff2') format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:'NotoJP';src:url('../fonts/noto-400.woff2') format('woff2');font-weight:400;font-display:block}
+@font-face{font-family:'NotoJP';src:url('../fonts/noto-500.woff2') format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:'Cormo';src:url('../fonts/cormorant-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:block}
+@font-face{font-family:'Cormo';src:url('../fonts/cormorant-500i.woff2') format('woff2');font-weight:500;font-style:italic;font-display:block}
+:root{--ink:#0B0B0D;--ivory:#F7F3EC;--muted:#C4BCA9;--gold:#D2AC62;--goldsoft:#8A7442;color-scheme:dark}
+*{margin:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+.stage{position:relative;width:1080px;height:1920px;background:radial-gradient(120% 78% at 50% 16%,#191921,#0A0A0D 76%);overflow:hidden}
+.gframe{position:absolute;inset:46px;border:2px solid rgba(210,172,98,.30);border-radius:26px;pointer-events:none}
+.gcorner{position:absolute;width:54px;height:54px;border:3px solid var(--gold);opacity:.85}
+.k1{top:70px;left:70px;border-right:0;border-bottom:0}.k2{top:70px;right:70px;border-left:0;border-bottom:0}
+.k3{bottom:70px;left:70px;border-right:0;border-top:0}.k4{bottom:70px;right:70px;border-left:0;border-top:0}
+.sky span{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;opacity:.22;animation:drift linear infinite}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(-46px,40px)}}
+.sweep{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);top:0;opacity:.45;animation:sweep 4.2s ease-in-out infinite}
+@keyframes sweep{0%,100%{transform:translateY(430px)}50%{transform:translateY(1490px)}}
+.badge{position:absolute;top:150px;left:0;right:0;text-align:center;font-family:'NotoJP';font-weight:500;color:var(--muted);font-size:34px;letter-spacing:.5em;text-transform:uppercase}
+.fr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 110px;opacity:0;transform:scale(.93);transition:opacity .4s ease,transform .5s ease}
+.fr.on{opacity:1;transform:scale(1)}
+.big{font-family:'MinchoB',serif;font-weight:800;color:var(--ivory);line-height:1.42;letter-spacing:.03em;font-size:100px;text-wrap:balance;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.tag{font-family:'Cormo',serif;font-style:italic;color:var(--gold);font-size:66px;margin-bottom:26px}
+.step{font-family:'Cormo',serif;font-weight:600;color:var(--gold);font-size:180px;line-height:1;margin-bottom:16px}
+.small{font-family:'NotoJP';color:var(--muted);font-size:46px;margin-top:34px;line-height:1.6}
+.small b{color:var(--gold);font-weight:700}
+.bag{width:420px;height:auto;margin-bottom:44px;filter:drop-shadow(0 12px 40px rgba(210,172,98,.18))}
+.name{font-family:'Cormo',serif;color:var(--gold);font-size:56px;margin-top:30px;letter-spacing:.04em}
+.progress{position:absolute;left:70px;right:70px;bottom:96px;height:5px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--goldsoft),var(--gold))}
+</style>
+<div class="stage" id="stage">
+  <div class="sky" id="sky"></div><div class="sweep"></div>
+  <div class="gframe"></div><span class="gcorner k1"></span><span class="gcorner k2"></span><span class="gcorner k3"></span><span class="gcorner k4"></span>
+  <div class="badge">meihin.note ・ AUTHENTICITY</div>
+
+  <div class="fr"><div class="tag">House Ambassador</div><div class="big">Lisaが纏う、<br>ルイ・ヴィトン。</div></div>
+
+  <div class="fr">
+    <svg class="bag" viewBox="0 0 240 210" fill="none">
+      <path d="M78 76 C78 34 162 34 162 76" stroke="#D2AC62" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M54 76 L186 76 L198 186 Q198 194 190 194 L50 194 Q42 194 42 186 Z" stroke="#D2AC62" stroke-width="3.5" stroke-linejoin="round"/>
+      <rect x="112" y="70" width="16" height="14" rx="3" stroke="#D2AC62" stroke-width="2.6"/>
+      <path d="M120 76 L120 194" stroke="#D2AC62" stroke-width="1.4" opacity=".5"/>
+    </svg>
+    <div class="big">その"本物"、<br>見分けられる？</div>
+  </div>
+
+  <div class="fr"><div class="step">01</div><div class="big">モノグラムの<br>配置は規則的？</div></div>
+  <div class="fr"><div class="step">02</div><div class="big">刻印は<br>鮮明で均一？</div></div>
+  <div class="fr"><div class="step">03</div><div class="big">ステッチは<br>等間隔？</div></div>
+
+  <div class="fr"><div class="big">保存して、<br>買う前に。</div>
+    <div class="small">プロフィールのリンク <b>@meihin.note</b><br>BUYMAで「<b>luxmall1004</b>」を検索</div></div>
+
+  <div class="progress"><i id="bar"></i></div>
+</div>
+<script>
+(function(){
+  var sky=document.getElementById('sky');for(var k=0;k<34;k++){var s=document.createElement('span');s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*100)+'%';s.style.animationDuration=(7+Math.random()*9).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*9).toFixed(1)+'s';if(Math.random()>.7){s.style.width='4px';s.style.height='4px';s.style.opacity='.45';}sky.appendChild(s);}
+  var frames=document.querySelectorAll('.fr'),bar=document.getElementById('bar'),step=-1,HOLD=1700,total=frames.length*HOLD;
+  function show(i){frames.forEach(function(f,j){f.classList.toggle('on',j===i);});}
+  window.__done=false;window.__total=total;
+  window.startReel=function(){var start=0;requestAnimationFrame(function r(ts){if(!start)start=ts;var el=ts-start;bar.style.width=Math.min(100,el/total*100)+'%';var idx=Math.floor(el/HOLD);if(idx>=frames.length)idx=frames.length-1;if(idx!==step){step=idx;show(step);}if(el<total+250){requestAnimationFrame(r);}else{window.__done=true;}});};
+})();
+</script>
