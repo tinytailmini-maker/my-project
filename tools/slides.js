@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { HANDLE, PILLAR, ROMAN, ITEMS } = require("./data.js");
+const { HANDLE, SHOP_KW, PILLAR, ROMAN, ITEMS } = require("./data.js");
 
 const OUT = path.join(__dirname, "slides");
 fs.mkdirSync(OUT, { recursive: true });
@@ -41,7 +41,12 @@ body{background:#000;font-family:'NotoJP',sans-serif}
 .csub{color:var(--muted);font-size:34px;letter-spacing:.02em}
 /* cta */
 .cta{align-items:center;justify-content:center;text-align:center}
-.cta .stitle{font-size:78px}
+.cta .stitle{font-size:76px}
+.cta .handle{margin-top:6px}
+.buybox{display:flex;flex-direction:column;gap:26px;margin:44px auto 8px;max-width:840px;text-align:left}
+.buyrow{display:flex;align-items:center;gap:24px;font-family:'NotoJP',sans-serif;font-weight:500;font-size:38px;color:var(--ivory);line-height:1.35}
+.buyrow .bn{flex:0 0 auto;width:56px;height:56px;border:1.5px solid var(--gold);border-radius:50%;color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormo',serif;font-size:34px}
+.buyrow .kw{color:var(--gold);font-weight:700}
 /* 표지 스와이프 안내 */
 .swipe{position:absolute;left:0;right:0;bottom:270px;text-align:center}
 .swipe span{display:inline-flex;align-items:center;gap:20px;border:1.5px solid var(--goldsoft);border-radius:999px;padding:18px 40px;color:var(--gold);font-family:'NotoJP',sans-serif;font-weight:500;font-size:33px;letter-spacing:.14em}
@@ -67,10 +72,14 @@ function slidesHTML(it) {
   <div class="swipe"><span>スワイプでチェック <b class="arw">→</b></span></div></section>
 ${pts}
 <section class="slide cta">${corners()}
-  <div class="eyebrow">Save it</div><div class="rule center"></div>
-  <div class="stitle">買う前に、<br>もう一度チェック。</div><div class="sbody muted" style="max-width:none">保存して、お買い物のお守りに。</div>
-  <div class="handle">${HANDLE}</div><div class="save">SAVE &amp; FOLLOW</div>
-  <div class="spacer"></div><div class="mark center">正規品はプロフィールのリンクから</div></section>`;
+  <div class="eyebrow">Where to buy</div><div class="rule center"></div>
+  <div class="stitle">気になる一点は、<br>こちらから。</div>
+  <div class="buybox">
+    <div class="buyrow"><span class="bn">1</span>プロフィールのリンクをタップ</div>
+    <div class="buyrow"><span class="bn">2</span>BUYMAで「<span class="kw">${SHOP_KW}</span>」を検索</div>
+  </div>
+  <div class="handle">${HANDLE}</div>
+  <div class="spacer"></div><div class="mark center">保存して、フォローもお忘れなく</div></section>`;
 }
 
 ITEMS.forEach(it => fs.writeFileSync(path.join(OUT, `${it.id}.html`), slidesHTML(it)));

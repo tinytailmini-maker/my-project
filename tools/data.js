@@ -1,5 +1,7 @@
 // 콘텐츠 데이터 (루이비통 001~010) — 캐러셀 + 쇼츠 공용 소스
 const HANDLE = "@meihin.note";
+const SHOP_KW = "luxmall1004"; // BUYMA 검색 키워드(구매 유도)
+const BUYMA_URL = "https://www.buyma.com/r/-B11722407O1/"; // BUYMA 추적 링크(최대 노출 대상)
 const PILLAR = {
   P1:{badge:"AUTHENTICITY", coverH:"知らないと損する<br>本物の見分け方", unit:"5つのポイント", tag:"Authenticity",
       intro:'高い買い物だからこそ、"目"を持っておきたい。\n正規品に共通する5つのポイントをまとめました。', close:"保存して、お買い物の前のチェックリストに。"},
@@ -136,4 +138,4 @@ const ITEMS = [
   tags:"#ルイヴィトン #LouisVuitton #リセール #相場 #資産価値 #ハイブランド #名品 #ブランド豆知識 #海外通販 #BUYMA #バイマ"},
 ];
 
-module.exports = { HANDLE, PILLAR, ROMAN, ITEMS };
+module.exports = { HANDLE, SHOP_KW, BUYMA_URL, PILLAR, ROMAN, ITEMS };
